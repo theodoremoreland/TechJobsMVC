@@ -3,8 +3,7 @@ package org.launchcode.TechJobsMVC.models;
 import java.util.Objects;
 
 public class Job {
-
-    private int id;
+    private final int id;
     private static int nextId = 1;
 
     private String name;
@@ -29,7 +28,6 @@ public class Job {
         coreCompetency = aCoreCompetency;
     }
 
-
     public boolean isValid() {
         return (this.name != null) || (this.employer != null) || (this.location != null) || (this.positionType != null) || (this.coreCompetency != null);
     }
@@ -49,14 +47,14 @@ public class Job {
         String template =
                 """
                                         
-                        ID:  %s
-                        Name: %s
-                        Employer: %s
-                        Location: %s
-                        Position Type: %s
-                        Core Competency: %s
+                ID:  %d
+                Name: %s
+                Employer: %s
+                Location: %s
+                Position Type: %s
+                Core Competency: %s
                                         
-                        """;
+                """;
 
         name = Objects.requireNonNullElse(this.name, defaultMessage);
 
