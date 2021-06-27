@@ -1,12 +1,13 @@
-package org.launchcode;
+package org.launchcode.javawebdevtechjobsmvc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TechjobsApplication {
+public class JavaWebDevTechjobsMvcApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TechjobsApplication.class, args);
+		SpringApplication.run(JavaWebDevTechjobsMvcApplication.class, args);
 	}
+
 }
