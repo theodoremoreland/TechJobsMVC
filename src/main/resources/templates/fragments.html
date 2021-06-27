@@ -1,58 +1,61 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/">
+    <head th:fragment="head">
+        <!-- Bootstrap stylesheets and script -->
+        <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+        <link th:href="@{/css/techjobs.css}" rel="stylesheet" />
+        <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
 
-<head th:fragment="head">
-
-    <!-- Bootstrap stylesheets and script -->
-    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
-    <link th:href="@{/css/techjobs.css}" rel="stylesheet" />
-    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
-
-    <title th:text="'TechJobs' + ${title == null ? '' : ' :: ' + title}">TechJobs</title>
-</head>
-
-<body>
-
-    <div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a th:href="@{/}" class="navbar-brand">TechJobs</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a th:href="@{/search}">Search</a></li>
-                    <li><a th:href="@{/list}">List</a></li>
-                </ul>
+        <title th:text="'TechJobs' + ${title == null ? '' : ' :: ' + title}">TechJobs</title>
+    </head>
+    <body>
+        <div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a th:href="@{/}" class="navbar-brand">TechJobs</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a th:href="@{/search}">Search</a></li>
+                        <li><a th:href="@{/list}">List</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
 
-    <table th:fragment="job-listings" class="job-listing" th:each="job: ${jobs}">
-        <tr>
-            <td>ID</td>
-            <td th:text="${job.getId()}"></td>
-        </tr>
-        <tr>
-            <td>Name</td>
-            <td th:text="${job.getName()}"></td>
-        </tr>
-        <tr>
-            <td>Employer</td>
-            <td th:text="${job.getEmployer()}"></td>
-        </tr>
-        <tr>
-            <td>Location</td>
-            <td th:text="${job.getLocation()}"></td>
-        </tr>
-        <tr>
-            <td>Position Type</td>
-            <td th:text="${job.getPositionType()}"></td>
-        </tr>
-        <tr>
-            <td>Core Competency</td>
-            <td th:text="${job.getCoreCompetency()}"></td>
-        </tr>
-    </table>
-
-</body>
+        <table th:fragment="job-listings" class="job-listing" th:each="job: ${jobs}">
+            <tr>
+                <td>ID</td>
+                <td th:text="${job.getId()}"></td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td th:text="${job.getName()}"></td>
+            </tr>
+            <tr>
+                <td>Employer</td>
+                <td >
+                    <a th:text="${job.getEmployer()}" th:href="@{'/list/jobs?column=employer&value=' + ${job.getEmployer()}}"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>Location</td>
+                <td >
+                    <a th:text="${job.getLocation()}" th:href="@{'/list/jobs?column=location&value=' + ${job.getLocation()}}"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>Position Type</td>
+                <td >
+                    <a th:text="${job.getPositionType()}" th:href="@{'/list/jobs?column=positionType&value=' + ${job.getPositionType()}}"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>Core Competency</td>
+                <td >
+                    <a th:text="${job.getCoreCompetency()}" th:href="@{'/list/jobs?column=coreCompetency&value=' + ${job.getCoreCompetency()}}"></a>
+                </td>
+            </tr>
+        </table>
+    </body>
 </html>
