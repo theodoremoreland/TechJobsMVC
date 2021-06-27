@@ -1,12 +1,12 @@
-package org.launchcode.javawebdevtechjobsmvc.controllers;
+package org.launchcode.TechJobsMVC.controllers;
 
-import org.launchcode.javawebdevtechjobsmvc.models.Job;
+import org.launchcode.TechJobsMVC.models.Job;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import org.launchcode.javawebdevtechjobsmvc.models.JobData;
+import org.launchcode.TechJobsMVC.models.JobData;
 
 import java.util.ArrayList;
 import java.util.HashMap;

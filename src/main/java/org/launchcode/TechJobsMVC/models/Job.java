@@ -1,4 +1,4 @@
-package org.launchcode.javawebdevtechjobsmvc.models;
+package org.launchcode.TechJobsMVC.models;
 
 import java.util.Objects;
 
@@ -29,36 +29,69 @@ public class Job {
         coreCompetency = aCoreCompetency;
     }
 
-    // Custom toString method.
-    @Override
-    public String toString(){
-        String output = "";
-        if (name.equals("")){
-            name = "Data not available";
-        }
-        if (employer.getValue().equals("") || employer.getValue() == null){
-            employer.setValue("Data not available");
-        }
-        if (location.getValue().equals("") || location.getValue() == null){
-            location.setValue("Data not available");
-        }
-        if (coreCompetency.getValue().equals("") || coreCompetency.getValue() == null){
-            coreCompetency.setValue("Data not available");
-        }
-        if (positionType.getValue().equals("") || positionType.getValue() == null){
-            positionType.setValue("Data not available");
-        }
 
-        output = String.format("\nID: %d\n" +
-                "Name: %s\n" +
-                "Employer: %s\n" +
-                "Location: %s\n" +
-                "Position Type: %s\n" +
-                "Core Competency: %s\n", id, name, employer, location, positionType, coreCompetency);
-        return output;
+    public boolean isValid() {
+        return (this.name != null) || (this.employer != null) || (this.location != null) || (this.positionType != null) || (this.coreCompetency != null);
     }
 
-    // Custom equals and hashCode methods. Two Job objects are "equal" when their id fields match.
+    @Override
+    public String toString() {
+        if (!this.isValid()) {
+            return "OOPS! This job does not seem to exist.";
+        }
+
+        String defaultMessage = "Data not available";
+        String name;
+        String employer;
+        String location;
+        String positionType;
+        String coreCompetency;
+        String template =
+                """
+                                        
+                        ID:  %s
+                        Name: %s
+                        Employer: %s
+                        Location: %s
+                        Position Type: %s
+                        Core Competency: %s
+                                        
+                        """;
+
+        name = Objects.requireNonNullElse(this.name, defaultMessage);
+
+        if (this.employer != null) {
+            employer = this.employer.getValue();
+        } else {
+            employer = defaultMessage;
+        }
+        if (this.location != null) {
+            location = this.location.getValue();
+        } else {
+            location = defaultMessage;
+        }
+        if (this.positionType != null) {
+            positionType = this.positionType.getValue();
+        } else {
+            positionType = defaultMessage;
+        }
+        if (this.coreCompetency != null) {
+            coreCompetency = this.coreCompetency.getValue();
+        } else {
+            coreCompetency = defaultMessage;
+        }
+
+        String formattedString = String.format(template,
+                this.id,
+                name,
+                employer,
+                location,
+                positionType,
+                coreCompetency);
+
+        return formattedString;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -72,8 +105,6 @@ public class Job {
         return Objects.hash(id);
     }
 
-
-    // Getters and setters.
 
     public int getId() {
         return id;

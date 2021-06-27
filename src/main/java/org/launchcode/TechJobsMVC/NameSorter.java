@@ -1,4 +1,4 @@
-package org.launchcode.javawebdevtechjobsmvc;
+package org.launchcode.TechJobsMVC;
 
 
 import java.util.Comparator;
