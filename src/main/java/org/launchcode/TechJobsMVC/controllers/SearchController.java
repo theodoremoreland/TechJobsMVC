@@ -8,18 +8,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
-import static org.launchcode.TechJobsMVC.controllers.ListController.columnChoices;
-
 /**
  * Created by LaunchCode
  */
 @Controller
 @RequestMapping("search")
-public class SearchController {
+public class SearchController extends TechJobsController {
 
     @RequestMapping(value = "")
     public String search(Model model) {
-        model.addAttribute("columns", columnChoices);
         return "search";
     }
 
@@ -35,7 +32,6 @@ public class SearchController {
         }
 
         model.addAttribute("selectedSearchType", searchType);
-        model.addAttribute("columns", columnChoices);
         model.addAttribute("jobs", jobs);
 
         return "search";
